@@ -1,0 +1,12 @@
+flickr tricklr... a simple perl script to upload a random photo from a
+directory to your photo stream.
+
+the intent of this project is to provide a tool to schedule updates to your
+photo stream, to garner more interest in your work... if you upload 200
+pictures at once, you get less views, etc.
+
+also, this will spread the photos out, so you don't have (theoretically)
+4 photos of the same waterfall right next to each other in your stream, etc
+
+meant to be run from cron at a set time of day to upload a random selection
+of photos from a provided pool.
