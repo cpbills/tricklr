@@ -92,7 +92,7 @@ if (opendir DIR,"$$options{src_dir}") {
     $number = $#files if ($number > $#files);
     foreach my $file (@files[0 .. $number]) {
         unless (upload_to_flickr($options,"$$options{src_dir}/$file")) {
-            #unlink "$$options{src_dir}/$file";
+            unlink "$$options{src_dir}/$file";
         }
     }
 } else {
