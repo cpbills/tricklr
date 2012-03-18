@@ -148,7 +148,7 @@ sub upload_to_flickr {
             return 1;
         }
     } else {
-        print STDERR "failed to upload image $filename";
+        print STDERR "failed to upload image $filename\n";
         return 1;
     }
     # shouldn't make it here...
