@@ -26,6 +26,7 @@ use HTTP::Request::Common 'POST';
 use XML::Simple;
 use Getopt::Std;
 use Digest::MD5 'md5_hex';
+use Data::Dumper;
 
 my $config_name = 'tricklr.conf';
 my @config_path = ();
@@ -149,6 +150,7 @@ sub upload_to_flickr {
         }
     } else {
         print STDERR "failed to upload image $filename\n";
+        print Dumper($response);
         return 1;
     }
     # shouldn't make it here...
