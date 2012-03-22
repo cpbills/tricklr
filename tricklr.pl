@@ -26,7 +26,6 @@ use HTTP::Request::Common 'POST';
 use XML::Simple;
 use Getopt::Std;
 use Digest::MD5 'md5_hex';
-use Data::Dumper;
 
 my $config_name = 'tricklr.conf';
 my @config_path = ();
@@ -126,7 +125,7 @@ sub upload_to_flickr {
     $sig = md5_hex($sig);
 
     my $browser = new LWP::UserAgent;
-       $browser->timeout(10);
+       $browser->timeout(60);
        $browser->requests_redirectable(['POST','GET','HEAD']);
     my $request = POST $url,
         Content_Type => 'form-data',
@@ -150,7 +149,7 @@ sub upload_to_flickr {
         }
     } else {
         print STDERR "failed to upload image $filename\n";
-        print Dumper($response);
+        print STDERR $response->status_line, "\n";
         return 1;
     }
     # shouldn't make it here...
