@@ -46,9 +46,10 @@ foreach my $config (@config_path) {
 # -v ; enable verbose output
 # -c <config file>
 # -s <source image directory>
+# -1 : send only one image to flickr
 # -h <history file>
 my %cli_opts = ();
-Getopt::Std::getopts('xvc:s:h:',\%cli_opts);
+Getopt::Std::getopts('xvc:s:h:1',\%cli_opts);
 
 $options_file = $cli_opts{c} if ($cli_opts{c});
 my $options = read_options("$options_file");
@@ -61,6 +62,11 @@ my $max = 1;
 $min = $$options{min} if (defined $$options{min});
 $max = $$options{max} if (defined $$options{max});
 
+if (defined $$options{1}) {
+    $min = 1;
+    $max = 1;
+}
+
 # just in case max/min get switched or something, user error...?
 if ($min > $max) {
     my $temp = $max;
@@ -69,7 +75,8 @@ if ($min > $max) {
 }
 
 # generate a random number from $min to $max to use
-my $number = (int(rand($max-$min))+$min)-1;
+my $number = (int(rand($max-$min))+$min);
+print "sending $number photos to flickr\n" if ($$options{verbose});
 
 if ($$options{auth_token}) {
     # this may re-set the auth token if they are invalid;
