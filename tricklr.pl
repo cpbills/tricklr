@@ -318,6 +318,7 @@ sub sign_request {
 
 sub fisher_yates_shuffle {
     my $array = shift;
+    return unless (scalar @$array > 1);
     my $i;
     for ($i = @$array; --$i; ) {
         my $j = int rand ($i+1);
